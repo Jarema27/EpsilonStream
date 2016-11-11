@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Utwor',
     'Comment',
 )
 
@@ -102,3 +103,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 Static_ROOT = os.path.join(BASE_DIR,'public','static')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
