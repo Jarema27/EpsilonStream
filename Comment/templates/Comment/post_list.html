@@ -1,8 +1,8 @@
 {% load staticfiles %}
 <html>
-	<head>
-		<title>EpsilonStream</title>
-		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <head>
+        <title>EpsilonStream</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link rel="stylesheet" href="{% static 'css/epsilon.css' %}">
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
@@ -25,13 +25,17 @@
 
 
         <div>
+        {{utwory}}
+
         {% for Utwor in utwory %}
+        <ul>
     <div>
         <p>Autor: {{ Utwor.author }}</p>
         <p>Created: {{ Utwor.created_date }}</p>
         <h1><a href="">{{ Utwor.title }}</a></h1>
         <p>{{ Utwor.text|linebreaksbr }}</p>
     </div>
+    </ul>
 {% endfor %}
         </div>
 	</body>
