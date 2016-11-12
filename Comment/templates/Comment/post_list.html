@@ -27,7 +27,9 @@
 
         <div>
      <ul>
+     
           {% for utwor in utwors %}
+              <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
               <h2><a href="">{{ utwor.title }}</a></h2>
               <p>Autor: {{ utwor.author }}</p>
               <p>Created: {{ utwor.created_date }}</p>
@@ -36,5 +38,15 @@
           {% endfor %}
         </ul>
         </div>
+
+        <script type="text/javascript">
+            function string WyswietlObrazek(String s){
+                if(s != null){
+                    return s;
+                }
+                else return null;
+            }
+        </script>
+
 	</body>
 </html>

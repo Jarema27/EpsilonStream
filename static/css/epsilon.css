@@ -40,6 +40,9 @@ h2 {
 ul{
 	font-family: 'PT Sans';
 }
+img{
+	padding: 5px 15px;
+}
 
 #tfheader{
 		background-color:#c3dfef;
