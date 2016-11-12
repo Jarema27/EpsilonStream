@@ -8,6 +8,7 @@
         <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
 
 
+
 	</head>
 
 	<body>
@@ -25,18 +26,17 @@
 
 
         <div>
-        {{utwory}}
 
-        {% for Utwor in utwory %}
-        <ul>
-    <div>
-        <p>Autor: {{ Utwor.author }}</p>
-        <p>Created: {{ Utwor.created_date }}</p>
-        <h1><a href="">{{ Utwor.title }}</a></h1>
-        <p>{{ Utwor.text|linebreaksbr }}</p>
-    </div>
-    </ul>
-{% endfor %}
+        <p>{{myObj.list|length}}</p>
+
+        <label for="utwors"> Utwor</label>
+    <select  id="utwors" name="utwors">
+     {% for utwor in utwors %}
+        <option id="{{ utwor.title }}" value="{{ utwor.author }}">{{ utwors.title }} </option>
+     {% endfor %}
+    </select>
+
+
         </div>
 	</body>
 </html>
