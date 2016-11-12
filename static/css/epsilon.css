@@ -23,13 +23,14 @@ body{
 	background-color: #F1F1F1;
 }
 
-h1 button{
+h1 form button{
 	border-top-left-radius: 20px 20px;
 	border-bottom-left-radius: 20px 20px;
 	border-top-right-radius: 20px 20px;
 	border-bottom-right-radius: 20px 20px;
 	float:right;
 	padding:5px;
+
 }
 
 h2 {
