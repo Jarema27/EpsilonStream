@@ -26,17 +26,15 @@
 
 
         <div>
-
-        <p>{{myObj.list|length}}</p>
-
-        <label for="utwors"> Utwor</label>
-    <select  id="utwors" name="utwors">
-     {% for utwor in utwors %}
-        <option id="{{ utwor.title }}" value="{{ utwor.author }}">{{ utwors.title }} </option>
-     {% endfor %}
-    </select>
-
-
+     <ul>
+          {% for utwor in utwors %}
+              <h2><a href="">{{ utwor.title }}</a></h2>
+              <p>Autor: {{ utwor.author }}</p>
+              <p>Created: {{ utwor.created_date }}</p>
+              <p>{{ utwor.text|linebreaksbr }}</p>
+            
+          {% endfor %}
+        </ul>
         </div>
 	</body>
 </html>

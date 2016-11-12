@@ -10,7 +10,7 @@
     text-decoration: none;
 }
 h1 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Lobster';
     padding: 0 0 0 50px;
     background-color: #055ffc;
 }
@@ -30,6 +30,15 @@ h1 button{
 	border-bottom-right-radius: 20px 20px;
 	float:right;
 	padding:5px;
+}
+
+h2 {
+
+	font-family: 'Lobster', cursive;
+}
+
+ul{
+	font-family: 'PT Sans';
 }
 
 #tfheader{
