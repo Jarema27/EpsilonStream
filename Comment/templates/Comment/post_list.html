@@ -1,54 +1,41 @@
-{% load staticfiles %}
-<html>
-    <head>
-        <title>EpsilonStream</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link rel="stylesheet" href="{% static 'css/epsilon.css' %}">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+{% extends 'Comment/base.html' %}
 
+{% block title %}Epsilon Stream{% endblock title %}
 
+{% block content %}
+	<div>
+    <h1><a href ="/">Epsilon Stream</a>
 
-	</head>
+      <form  method="get" action="/logowanie.html">
+          <button input type="submit" value="search" type="button">Logowanie</button>
+      </form>
 
-	<body>
-		<div>
-            <h1><a href ="/">Epsilon Stream</a>
-            
-            <form  method="get" action = "/logowanie.html"">
-                <button input type="submit" value="search"  type="button">Logowanie</button>
-            </form>
-
-			<form id="tfnewsearch" method="get" action="http://www.google.com">
+			<form id="tfnewsearch" method="get" action="/songs">
 		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
 			</form>
 
-            </h1>
-        </div>
+    </h1>
+  </div>
 
+  <div>
+    <ul>
+      {% for utwor in utwors %}
+          <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
+          <h2><a href="">{{ utwor.title }}</a></h2>
+          <p>Autor: {{ utwor.author }}</p>
+          <p>Created: {{ utwor.created_date }}</p>
+          <p>{{ utwor.text|linebreaksbr }}</p>
 
-        <div>
-     <ul>
-     
-          {% for utwor in utwors %}
-              <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
-              <h2><a href="">{{ utwor.title }}</a></h2>
-              <p>Autor: {{ utwor.author }}</p>
-              <p>Created: {{ utwor.created_date }}</p>
-              <p>{{ utwor.text|linebreaksbr }}</p>
-            
-          {% endfor %}
-        </ul>
-        </div>
+      {% endfor %}
+    </ul>
+  </div>
 
-        <script type="text/javascript">
-            function string WyswietlObrazek(String s){
-                if(s != null){
-                    return s;
-                }
-                else return null;
-            }
-        </script>
-
-	</body>
-</html>
+  <script type="text/javascript">
+      function string WyswietlObrazek(String s){
+          if(s != null){
+              return s;
+          }
+          else return null;
+      }
+  </script>
+{% endblock content %}

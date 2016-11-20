@@ -1,19 +1,12 @@
-<html>
-    <head>
-        <title>Ekran Logowania</title>
+{% extends 'Comment/base.html' %}
 
+{% block title %}Ekran Logowania{% endblock title %}
 
-
-
-</head>
-	<body>
-    <dir></dir>
-		<label class="inputData" for="login">E-mail:</label>
-    <input id="login" name="login" class="correct" type="text">
-    <dir></dir>
-    <label class="inputData" for="password">Hasło:</label>
-    <input id="password" name="password" type="password">
-    
-	</body>
-
-</html>
+{% block content %}
+  <dir></dir>
+  <label class="inputData" for="login">E-mail:</label>
+  <input id="login" name="login" class="correct" type="text">
+  <dir></dir>
+  <label class="inputData" for="password">Hasło:</label>
+  <input id="password" name="password" type="password">
+{% endblock content %}
