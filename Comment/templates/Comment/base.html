@@ -9,6 +9,19 @@
     <title>{% block title %}{% endblock %}</title>
   </head>
   <body>
+    <div>
+      <h1><a href ="/">Epsilon Stream</a>
+
+        <form  method="get" action="/logowanie">
+            <button input type="submit" value="search" type="button">Logowanie</button>
+        </form>
+
+        <form id="tfnewsearch" method="get" action="/songs">
+              <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
+        </form>
+
+      </h1>
+    </div>
     {% block content %}{% endblock %}
   </body>
 </html>

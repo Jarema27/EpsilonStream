@@ -19,7 +19,7 @@ class Comment(models.Model):
 class Utwor(models.Model):
     author = models.CharField(max_length=200)
     title = models.CharField(max_length=200)
-    text = models.TextField()
+    song = models.FileField(upload_to='music', null=True)
     IloscWyswietlen = models.DecimalField(max_digits=20,decimal_places=0,default=Decimal('0'))
     imgurl = models.CharField(max_length = 200)
     created_date = models.DateTimeField(

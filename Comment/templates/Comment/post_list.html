@@ -3,20 +3,6 @@
 {% block title %}Epsilon Stream{% endblock title %}
 
 {% block content %}
-	<div>
-    <h1><a href ="/">Epsilon Stream</a>
-
-      <form  method="get" action="/logowanie.html">
-          <button input type="submit" value="search" type="button">Logowanie</button>
-      </form>
-
-			<form id="tfnewsearch" method="get" action="/songs">
-		        <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-			</form>
-
-    </h1>
-  </div>
-
   <div>
     <ul>
       {% for utwor in utwors %}
@@ -24,18 +10,10 @@
           <h2><a href="">{{ utwor.title }}</a></h2>
           <p>Autor: {{ utwor.author }}</p>
           <p>Created: {{ utwor.created_date }}</p>
-          <p>{{ utwor.text|linebreaksbr }}</p>
-
+          {% if utwor.song %}
+            <p><audio src="{{ utwor.song.url }}" controls="controls">Can't play</audio></p>
+          {% endif %}
       {% endfor %}
     </ul>
   </div>
-
-  <script type="text/javascript">
-      function string WyswietlObrazek(String s){
-          if(s != null){
-              return s;
-          }
-          else return null;
-      }
-  </script>
 {% endblock content %}

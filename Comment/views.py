@@ -11,7 +11,6 @@ def post_list(request):
 
 def logowanie(request):
 	return render(request, 'Comment/logowanie.html', {})
-# Create your views here.
 
 def search_songs(request):
 	find_string = request.GET.get('q', '')
