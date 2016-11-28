@@ -15,4 +15,4 @@ def logowanie(request):
 def search_songs(request):
 	find_string = request.GET.get('q', '')
 	utwors = Utwor.objects.filter(Q(author__contains=find_string) | Q(title__contains=find_string))
-	return render(request, 'Comment/songs.html', {'utwors':utwors})
+	return render(request, 'Comment/post_list.html', {'utwors':utwors})

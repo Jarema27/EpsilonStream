@@ -11,9 +11,13 @@
           <p>Autor: {{ utwor.author }}</p>
           <p>Created: {{ utwor.created_date }}</p>
           {% if utwor.song %}
-            <p><audio src="{{ utwor.song.url }}" controls="controls">Can't play</audio></p>
+            <button type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Play</button>
           {% endif %}
       {% endfor %}
+      
+      <div id="audioContainer">
+        <p><audio src="" id="audioPlayer" controls="controls">Can't play</audio></p>            
+      </div>
     </ul>
   </div>
 {% endblock content %}
