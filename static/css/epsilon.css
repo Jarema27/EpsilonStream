@@ -41,6 +41,11 @@ h1 form button{
 
 }
 
+div diss {
+	display:block;
+ 	float:left;
+}
+
 h2 {
 
 	font-family: 'Lobster', cursive;
@@ -48,9 +53,15 @@ h2 {
 
 ul{
 	font-family: 'PT Sans';
+	display:block;
+	float:left;
+}
+ul a:hover {
+    background-color: #111;
 }
 img{
 	padding: 5px 15px;
+
 }
 
 #tfheader{

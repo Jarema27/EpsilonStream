@@ -6,17 +6,23 @@
   <div>
     <ul>
       {% for utwor in utwors %}
+      	<div href = "diss">
           <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
           <h2><a href="">{{ utwor.title }}</a></h2>
           <p>Autor: {{ utwor.author }}</p>
           <p>Created: {{ utwor.created_date }}</p>
           {% if utwor.song %}
-            <button type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Play</button>
+          <button href "a" type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
+          </div>
           {% endif %}
       {% endfor %}
       
       <div id="audioContainer">
-        <p><audio src="" id="audioPlayer" controls="controls">Can't play</audio></p>            
+        <p><audio src="" id="audioPlayer" controls="controls">Can't play</audio>
+        </p>           
+
+
+
       </div>
     </ul>
   </div>
