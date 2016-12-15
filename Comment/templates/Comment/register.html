@@ -1,24 +1,32 @@
-{% extends 'Comment/base.html' %}
+<!DOCTYPE html>
+<html>
 
-{% block title %}Ekran Logowania{% endblock title %}
-	
-{% block content %}
+{
+    <head>
+        <title>Register</title>
+    </head>
 
-   <h2>Logowanie</h2>
+    <body>
+        <h1>Register</h1>
 
-  <dir></dir>
-  <label class="inputData" for="login">E-mail:</label>
-  <input id="login" name="login" class="correct" type="text">
-  <dir></dir>
-  <label class="inputData" for="password">Hasło:</label>
-  <input id="password" name="password" type="password">
+        {% if registered %}
+        says: <strong>thank you for registering!</strong>
+        <a href="/logowanie">Return to the homepage.</a><br />
+        {% else %}
+        says: <strong>register here!</strong><br />
 
-   <form action="" method="post">{% csrf_token %}
-    {{form.as_p}}   <input type="submit" value="Zaloguj" />
-    </form>
-    <label >Nie masz jeszcze konta ?</label>
-   <form action="/registration_complete/" method="post">
-      <input type="submit" value="Rejestruj" />
-   </form>
+        <form id="user_form" method="post" action="/register/"
+                enctype="multipart/form-data">
 
-{% endblock content %}
+            {% csrf_token %}
+
+            {{ user_form.as_p }}
+            {{ profile_form.as_p }}
+
+
+            <input type="submit" name="submit" value="Register" />
+        </form>
+        {% endif %}
+    </body>
+
+</html>
