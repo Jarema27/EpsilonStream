@@ -4,6 +4,13 @@
 
 {% block content %}
   <div>
+  {% if user.is_authenticated %}
+<h1>Siema {{ user.username }}!</h1>
+{% else %}
+<h1>hello world!</h1>
+{% endif %}
+
+
     <ul>
       {% for utwor in utwors %}
       	<div href = "diss">

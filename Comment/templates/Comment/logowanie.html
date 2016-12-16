@@ -3,20 +3,26 @@
 {% block title %}Ekran Logowania{% endblock title %}
 	
 {% block content %}
-
+  <title>Logowanie</title>
    <h2>Logowanie</h2>
 
 
-  <dir></dir>
-  <label class="inputData" for="login">E-mail:</label>
-  <input id="login" name="login" class="correct" type="text">
-  <dir></dir>
-  <label class="inputData" for="password">Hasło:</label>
-  <input id="password" name="password" type="password">
+  <body>
+        <h1>Login to Epsilon</h1>
 
-   <form action="" method="post">{% csrf_token %}
-    {{form.as_p}}   <input type="submit" value="Zaloguj" />
-    </form>
+        <form id="login_form" method="post" action="/logowanie">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
+
+            <input type="submit" value="submit" />
+        </form>
+
+    </body>
+
+
     <label >Nie masz jeszcze konta ?</label>
       <a href="/register/">Register Here</a>
 
