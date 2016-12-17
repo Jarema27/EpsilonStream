@@ -4,27 +4,33 @@
 	
 {% block content %}
   <title>Logowanie</title>
-   <h2>Logowanie</h2>
 
 
   <body>
-        <h1>Login to Epsilon</h1>
-
+        <div id="logowanie">
+         <h1>Login to Epsilon</h1>
         <form id="login_form" method="post" action="/logowanie">
             {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
             <br />
-            Password: <input type="password" name="password" value="" size="50" />
+            Username: <input type="text" name="username " value="" size="50" />
+            <br />
+            Password : <input type="password" name="password " value="" size="50" />
             <br />
 
-            <input type="submit" value="submit" />
+            <input type="submit" value="Zaloguj się" />
         </form>
 
+
+        <label >Nie masz jeszcze konta ?</label>
+      <a href="/register/">Zarejestruj się tutaj</a>
+        </div>
+
+        
+        
     </body>
 
 
-    <label >Nie masz jeszcze konta ?</label>
-      <a href="/register/">Register Here</a>
+    
 
 
 {% endblock content %}

@@ -17,10 +17,16 @@
     <div>
       <h1><a href ="/">Epsilon Stream</a>
 
+
+       {% if user.is_authenticated %}
+        <form  method="get" action="/logout/">
+            <button input type="submit" value="search" type="button">Wyloguj się</button>
+        </form>
+       {% else %}
         <form  method="get" action="/logowanie">
             <button input type="submit" value="search" type="button">Logowanie</button>
         </form>
-
+        {% endif %}
         <form id="tfnewsearch" method="get" action="/songs">
               <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
         </form>

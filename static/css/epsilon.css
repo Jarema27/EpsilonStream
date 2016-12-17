@@ -64,6 +64,14 @@ img{
 
 }
 
+#logowanie{
+	padding-top:10%;
+	display: block;
+    margin: auto;
+    width: 40%;
+}
+
+
 #tfheader{
 		background-color:#c3dfef;
 	}

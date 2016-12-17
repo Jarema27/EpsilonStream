@@ -1,7 +1,12 @@
+{% extends 'Comment/base.html' %}
+
+{% block title %}Ekran Logowania{% endblock title %}
+    
+{% block content %}
+
 <!DOCTYPE html>
 <html>
 
-{
     <head>
         <title>Register</title>
     </head>
@@ -10,10 +15,10 @@
         <h1>Register</h1>
 
         {% if registered %}
-        says: <strong>thank you for registering!</strong>
+        <strong>Dzięki za rejestrację!</strong>
         <a href="/logowanie">Return to the homepage.</a><br />
         {% else %}
-        says: <strong>register here!</strong><br />
+        <strong>Zarejestruj się tutaj!</strong><br />
 
         <form id="user_form" method="post" action="/register/"
                 enctype="multipart/form-data">
@@ -30,3 +35,5 @@
     </body>
 
 </html>
+
+{% endblock content %}
