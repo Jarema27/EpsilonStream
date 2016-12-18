@@ -22,14 +22,19 @@
 
         <form id="user_form" method="post" action="/register/"
                 enctype="multipart/form-data">
-
+            <dir>
             {% csrf_token %}
+            <dir><h4>Podaj nazwę użytkownika:</h4>{{user_form.username}}</dir>
+            <dir id="txtNewPassword"><h4>Podaj hasło :</h4>{{user_form.password}}</dir>
+            <dir id="txtNewPasswordPrim"><h4>Podaj hasło ponownie:</h4>{{user_form.password}}</dir>
 
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
-
-
+            {% if txtNewPassword == txtNewPasswordPrim %}
+            
             <input type="submit" name="submit" value="Register" />
+            {%else%}
+            <h4>Hasła się nie zgadzają<h4>
+            {%endif%}
+
         </form>
         {% endif %}
     </body>
