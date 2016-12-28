@@ -27,7 +27,7 @@
             <dir><h4>Podaj nazwę użytkownika:</h4>{{user_form.username}}</dir>
             <dir id="txtNewPassword"><h4>Podaj hasło :</h4>{{user_form.password}}</dir>
             <dir id="txtNewPasswordPrim"><h4>Podaj hasło ponownie:</h4>{{user_form.password}}</dir>
-
+            <dir ><h4>Podaj email:</h4>{{user_form.email}}</dir>
             {% if txtNewPassword == txtNewPasswordPrim %}
             
             <input type="submit" name="submit" value="Register" />

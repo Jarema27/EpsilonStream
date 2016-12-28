@@ -46,4 +46,34 @@ class UserProfile(models.Model):
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
         return self.user.username
+class Album(models.Model):
+    id_Alb = models.CharField(max_length=30)
+    NazwaAlb = models.CharField(max_length=50)
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
 
+    def __str__(self):
+        return self.title
+
+class Gatunek(models.Model):
+    id_G = models.CharField(max_length=30)
+    NazwaG = models.CharField(max_length=30)
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title
+class Lista(models.Model):
+    id_L = models.CharField(max_length=30)
+    NazwaL = models.CharField(max_length=20)
+    created_date = models.DateTimeField(
+            default=timezone.now)
+    Klient = models.ForeignKey('auth.User')
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return self.title

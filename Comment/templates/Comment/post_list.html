@@ -5,15 +5,16 @@
 {% block content %}
   <div>
   {% if user.is_authenticated %}
-<h1>Siema {{ user.username }}!</h1>
+<h1>Witaj {{ user.username }}!</h1>
 {% else %}
-<h1>hello world!</h1>
+
 {% endif %}
 
 
     <ul>
+    <div id="lista">
       {% for utwor in utwors %}
-      	<div href = "diss">
+      	<div id = "diss">
           <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
           <h2><a href="">{{ utwor.title }}</a></h2>
           <p>Autor: {{ utwor.author }}</p>
@@ -23,7 +24,7 @@
           </div>
           {% endif %}
       {% endfor %}
-      
+      </div>
       <div id="audioContainer">
         <p><audio src="" id="audioPlayer" controls="controls">Can't play</audio>
         </p>           
@@ -32,5 +33,7 @@
 
       </div>
     </ul>
+
+
   </div>
 {% endblock content %}
