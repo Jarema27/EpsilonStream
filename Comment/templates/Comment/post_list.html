@@ -10,10 +10,13 @@
 
 {% endif %}
 
-
+<div>
     <ul>
-    <div id="lista">
+
+    <h3 id = "fortitle">Rekomendowane</h3>
+
       {% for utwor in utwors %}
+        {% if forloop.counter < 6 %}
       	<div id = "diss">
           <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
           <h2><a href="">{{ utwor.title }}</a></h2>
@@ -22,9 +25,46 @@
           {% if utwor.song %}
           <button href "a" type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
           </div>
+
           {% endif %}
+          {% endif %}
+
       {% endfor %}
-      </div>
+
+
+      <br></br>
+      <br></br>
+      <br></br>
+      {% for gatunek in gatuneks %}
+      <div id="gatun">
+      <h3 id = "fortitle">{{gatunek.NazwaG}}</h3>
+          
+          
+          <div id = gatundiss>
+          {% for utwor in utwors %}
+          
+          {% if gatunek == utwor.gatunek %}
+
+          
+        
+          <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
+          <h2><a href="">{{ utwor.title }}</a></h2>
+          <p>Autor: {{ utwor.author }}</p>
+          <p>Created: {{ utwor.created_date }}</p>
+          {% if utwor.song %}
+          <button href "a" type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
+          
+          {% endif %}
+          <div></div>
+          {% endif %}
+
+          {% endfor %}
+          </div>
+
+      </div><br></br>
+      {% endfor %}
+
+      
       <div id="audioContainer">
         <p><audio src="" id="audioPlayer" controls="controls">Can't play</audio>
         </p>           

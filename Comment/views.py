@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.db.models import Q
 from .models import Comment
 from .models import Utwor
+from .models import Gatunek
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
@@ -11,8 +12,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 
 def post_list(request):
-	utwors = Utwor.objects.all()
-	return render(request, 'Comment/post_list.html', {'utwors':utwors})
+   utwors = Utwor.objects.all()
+   gatuneks=Gatunek.objects.all()
+   return render(request, 'Comment/post_list.html', {'utwors':utwors,'gatuneks':gatuneks})
 
 def logowanie(request):
 	return render(request, 'Comment/logowanie.html', {})
