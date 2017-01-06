@@ -20,11 +20,11 @@
 
        {% if user.is_authenticated %}
         <form  method="get" action="/logout/">
-            <button input type="submit" value="search" type="button">Wyloguj się</button>
+        	<input id="opcje" type="image" src="http://freevector.co/wp-content/uploads/2012/11/78348-options-circular-button.png" width="120" height="100"/>
         </form>
        {% else %}
         <form  method="get" action="/logowanie">
-            <button input type="submit" value="search" type="button">Logowanie</button>
+            <button input src="https://www.myworldofwork.co.uk/sites/default/files/images/my-career-options-450-trans%5D.png" type="submit" value="search" type="button">Logowanie</button>
         </form>
         {% endif %}
         <form id="tfnewsearch" method="get" action="/songs">
