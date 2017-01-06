@@ -19,6 +19,10 @@ def post_list(request):
 def logowanie(request):
 	return render(request, 'Comment/logowanie.html', {})
 
+def utwor(request):
+    utwors = Utwor.objects.all()
+    return render(request, 'Comment/utwor.html', {'utwors':utwors})
+
 def search_songs(request):
 	find_string = request.GET.get('q', '')
 	utwors = Utwor.objects.filter(Q(author__contains=find_string) | Q(title__contains=find_string))

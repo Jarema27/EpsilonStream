@@ -1,3 +1,5 @@
+
+
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #FCA205;
     font-size: 36pt;
@@ -16,6 +18,8 @@
 #audioContainer audio {
 	width: 100%;
 }
+
+
 
 h1 {
     font-family: 'Lobster';
@@ -85,6 +89,11 @@ img{
 #opcje{
 	
 }
+
+
+
+
+
 
 
 div #gatundiss{
