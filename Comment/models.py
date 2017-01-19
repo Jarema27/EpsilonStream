@@ -82,3 +82,13 @@ class Lista(models.Model):
 
     def __str__(self):
         return self.NazwaL
+
+class UtwordoListy(models.Model):
+    IdUtwor = models.ForeignKey(Utwor, on_delete=models.CASCADE)
+    IdLista = models.ForeignKey(Lista, on_delete=models.CASCADE)
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return str(self.IdUtwor)
