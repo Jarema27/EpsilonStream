@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 #base-header {
 
 }
+=======
+
+>>>>>>> 248b9b5ea8e90088c0e8af70dba8979bd5755608
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
     color: #FCA205;
@@ -22,18 +26,28 @@
 }
 
 
+<<<<<<< HEAD
 /*
+=======
+
+>>>>>>> 248b9b5ea8e90088c0e8af70dba8979bd5755608
 h1 {
     font-family: 'Lobster';
     padding: 0 0 0 50px;
     background-color: #055ffc;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 248b9b5ea8e90088c0e8af70dba8979bd5755608
 h1 a{
 	color:#FCA205;
 	font-size: 40pt;
 }
+<<<<<<< HEAD
 */
+=======
+>>>>>>> 248b9b5ea8e90088c0e8af70dba8979bd5755608
 
 body{
 	background-color: #F1F1F1;
