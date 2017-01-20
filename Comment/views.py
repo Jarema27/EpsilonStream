@@ -4,12 +4,12 @@ from django.db.models import Q
 from .models import Comment
 from .models import Utwor
 from .models import Gatunek
-from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from Comment.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
+from django.shortcuts import render_to_response
 
 def post_list(request):
    utwors = Utwor.objects.all()
@@ -20,8 +20,13 @@ def logowanie(request):
 	return render(request, 'Comment/logowanie.html', {})
 
 def utwor(request):
+    title = request.GET.get('title', 'k')
+    print(title)
     utwors = Utwor.objects.all()
-    return render(request, 'Comment/utwor.html', {'utwors':utwors})
+    return render(request, 'Comment/utwor.html', {'utwors':utwors,'tytul':title})
+
+def listy(request):
+    return render(request, 'Comment/listyOd.html', {})
 
 def search_songs(request):
 	find_string = request.GET.get('q', '')
