@@ -8,11 +8,8 @@
 
   <body>
         
-        <h2><p >{{ tytul }}</p></h2>
-        
+        <h2><p >{{ utwor.tytul }}</p></h2>
 
-        {% for utwor in utwors %}
-        {% if utwor.title == tytul %}
       	<div id = "diss">
           <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
 
@@ -21,14 +18,9 @@
           <p name = 'autor'>Autor: {{ utwor.author }}</p>
           <p>Created: {{ utwor.created_date }}</p>
           {% if utwor.song %}
-          <button  type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
-          </div>
-
+            <button  type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
+            </div>
           {% endif %}
-          {% endif %}
-
-      {% endfor %}
-
 
   </body>
 

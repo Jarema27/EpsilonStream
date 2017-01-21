@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^songs/$', views.search_songs, name='search_songs'),
     url(r'^utwor/$', views.utwor, name='utwor'),
     url(r'^dodaj/$', views.Dodaj, name='dodaj'),
+    url(r'^utwor/(?P<pk>[0-9]+)/$', views.utwor, name='utwor'),
     url(r'^listyOd/$', views.listy, name='listyOd'),
     url(r'^register/$', views.register, name='register'), # ADD NEW PATTERN!
     url(r'^logout/$', views.user_logout, name='logout'),
