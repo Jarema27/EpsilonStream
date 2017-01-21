@@ -1,31 +1,20 @@
 {% extends 'Comment/base.html' %}
 
-{% block title %}Ekran Logowania{% endblock title %}
+{% block title %}Utwor{% endblock title %}
 	
 {% block content %}
-  <title>Utwor</title>
 
+<h2><p >{{ utwor.tytul }}</p></h2>
 
-  <body>
-        
-        <h2><p >{{ utwor.tytul }}</p></h2>
-
-      	<div id = "diss">
-          <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
-
-          
-
-          <p name = 'autor'>Autor: {{ utwor.author }}</p>
-          <p>Created: {{ utwor.created_date }}</p>
-          {% if utwor.song %}
-            <button  type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
-            </div>
-          {% endif %}
-
-  </body>
-
-
-    
-
+<div id = "diss">
+  <img src = {{utwor.imgurl}}  style="width:128px;height:128px";>
+  <p name = 'autor'>Autor: {{ utwor.author }}</p>
+  <p>Created: {{ utwor.created_date }}</p>
+  {% if utwor.song %}
+    <audio autoplay="autoplay" controls="controls">
+      <source src="{{ utwor.song.url }}" type="audio/mp3">
+    </audio>
+  {% endif %}
+</div>
 
 {% endblock content %}
