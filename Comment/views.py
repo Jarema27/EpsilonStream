@@ -24,11 +24,12 @@ def logowanie(request):
 
 def Dodaj(request):
     lists = Lista.objects.all()
-    return render(request, 'Comment/dodaj.html', {'lists':lists})
+    title = request.GET.get('title', 'k')
+    
+    return render(request, 'Comment/dodaj.html', {'title':title,'lists':lists})
 
 def utwor(request):
     title = request.GET.get('title', 'k')
-    print(title)
     utwors = Utwor.objects.all()
     return render(request, 'Comment/utwor.html', {'utwors':utwors,'tytul':title})
 
@@ -47,6 +48,25 @@ def search_songs(request):
 	find_string = request.GET.get('q', '')
 	utwors = Utwor.objects.filter(Q(author__contains=find_string) | Q(title__contains=find_string))
 	return render(request, 'Comment/post_list.html', {'utwors':utwors})
+
+def nowa_lista(request):
+    find_string = request.GET.get('create', 'k')
+    lis = Lista(NazwaL = find_string,Klient = request.user)
+    lis.save()
+    lists = Lista.objects.all()
+    return render(request, 'Comment/dodaj.html', {'lists':lists})
+
+def dodaj_do_listy(request):
+    title = request.GET.get('ddj', 'k')
+    a = title.split(',')
+    utwor = Utwor.objects.get(title__contains = a[0])
+    lista = Lista.objects.get(NazwaL__contains = a[1])
+    dl = UtwordoListy()
+    dl.IdUtwor = utwor
+    dl.IdLista = lista
+    dl.save()
+    lists = Lista.objects.all()
+    return render(request, 'Comment/dodaj.html', {'lists':lists,'title':title})
 
 def registration(request):
     return render(request, 'Comment/registration.html')

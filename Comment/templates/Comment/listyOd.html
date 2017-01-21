@@ -8,16 +8,22 @@
 
   <body>
         
-        <h2><p >Listy użytkownika {{ user.username }}</p></h2>
-        
 
         
-        {% for pol in polaczenie %}
+
         {% for list in lists %}
+        <h1 > {{ list.NazwaL }}</h1>
+        {% for pol in polaczenie %}
+        
         {% ifequal user.username pol.IdLista.Klient.username %}
-
+        {% ifequal list.NazwaL pol.IdLista.NazwaL %}
+        <img src={{pol.IdUtwor.imgurl}} style="width:128px;height:128px;">
         <p >{{ pol.IdUtwor.title}}</p>
+        <p name = 'autor'>Autor: {{ pol.IdUtwor.author }}</p>
+        <p>Created: {{ pol.IdUtwor.created_date }}</p>
+        <button  type="button" class="playSong" onclick="playSong('{{ pol.IdUtwor.song.url }}')">Graj</button>  <br>
         {% endifequal%}	
+        {% endifequal%} 
         {% endfor %}
         {% endfor %}
 
