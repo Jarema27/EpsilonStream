@@ -9,7 +9,7 @@ from django.contrib.auth.forms import UserCreationForm
 from Comment.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 
 def post_list(request):
    utwors = Utwor.objects.all()
@@ -19,11 +19,9 @@ def post_list(request):
 def logowanie(request):
 	return render(request, 'Comment/logowanie.html', {})
 
-def utwor(request):
-    title = request.GET.get('title', 'k')
-    print(title)
-    utwors = Utwor.objects.all()
-    return render(request, 'Comment/utwor.html', {'utwors':utwors,'tytul':title})
+def utwor(request, pk):
+    song = get_object_or_404(Utwor, pk=pk)
+    return render(request, 'Comment/utwor.html', {'utwor':song})
 
 def listy(request):
     return render(request, 'Comment/listyOd.html', {})

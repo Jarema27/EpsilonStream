@@ -28,13 +28,14 @@
         </form>
 
         <ul class="nav navbar-nav navbar-right">
-          <li>
           {% if user.is_authenticated %}
-            <a href="/logout/">Wyloguj</a>
+            <li><a href="/">Profil</a></li>
+            <li><a href="/listyOd">Listy odtwarzania</a></li>
+            <li><a href="/">Historia</a></li>
+            <li><a href="/logout/">Wyloguj</a></li>
           {% else %}
-            <a href="/logowanie/">Zaloguj</a>
+            <li><a href="/logowanie/">Zaloguj</a></li>
           {% endif %}
-          </li>
         </ul>
       </div>
     </nav>
