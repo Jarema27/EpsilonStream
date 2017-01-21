@@ -12,7 +12,9 @@
         
 
         {% for list in lists %}
+
         <h1 > {{ list.NazwaL }}</h1>
+
         {% for pol in polaczenie %}
         
         {% ifequal user.username pol.IdLista.Klient.username %}

@@ -40,7 +40,7 @@ def utwor(request, pk):
 
 def listy(request):
     utwors = Utwor.objects.all()
-    lists = Lista.objects.all()
+    lists = Lista.objects.filter(Q(Klient = request.user))    
     polaczenie = UtwordoListy.objects.all()
     return render(request, 'Comment/listyOd.html', {'utwors':utwors,'lists':lists,'polaczenie':polaczenie})
 

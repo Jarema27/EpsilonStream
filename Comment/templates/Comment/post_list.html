@@ -1,18 +1,12 @@
-{% extends 'Comment/base.html' %} {% block title %}Epsilon Stream{% endblock title %} {% block content %}
-<div>
+{% extends 'Comment/base.html' %} 
+
+{% block title %}Epsilon Stream{% endblock title %} 
+
+{% block content %}
+<div id="post-list">
   {% if user.is_authenticated %}
-
-
-    <h1>Witaj {{ user.username }}!</h1>
-    
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">Profil</a>
-      <a href="/listyOd">Listy odtwarzania</a>
-
-    </div>
-
     <!-- Use any element to open the sidenav -->
+
   {% endif %}
 
 
@@ -20,60 +14,78 @@
 
 
 
-<div>
-    <ul>
-    
-    <h3 id = "fortitle">Rekomendowane</h3>
-      {% for utwor in utwors %}
-        {% if forloop.counter < 6 %}
-        <div id = "diss">
-          <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
 
-          
-          <form id="doutworu" method="get" action="/utwor">
-          <h2><input type="submit"  name = 'title' value="{{ utwor.title }}" id = "utworbutton"></input></h2>
-          
-          </form>
+<div id="main">
+  <div id="utwory">
+      <h3 id="fortitle">Rekomendowane</h3>
+      <div class="row">
+        {% for utwor in utwors %} 
+          {% if forloop.counter < 6 %}
+            <div class="col-md-4" onclick="location.href='/utwor/{{utwor.id}}';">
+              <div class="thumbnail">
+                <div id="utwor">
+                  <div class="column">
+                    <img src={{utwor.imgurl}} style="width:128px;height:128px;">
+                  </div>
+                  <div class="column">
+                    <div class="caption">
+                      <div class="page-header">
+                        <h4>{{utwor.title}}</h4>
+                      </div>
+                      <p name='autor'>Autor: {{ utwor.author }}<br />
+                      Created: {{ utwor.created_date }}</p>
+                    </div>
+                  </div>
+                  <div style="clear:both;"></div>
+                </div>
+              </div>
+            </div>
 
-          <p name = 'autor'>Autor: {{ utwor.author }}</p>
-          <p>Created: {{ utwor.created_date }}</p>
-          {% if utwor.song %}
-          <button  type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
-          <form id="doutworu" method="get" action="/dodaj">
-          <button  type="submit" name = 'title' value="{{ utwor }}">Dodaj do listy</button></form>
-          </div>
-
-          {% endif %}
-          {% endif %}
-
-      {% endfor %}
-
-
-      <br></br>
-      <br></br>
-      <br></br>
-      {% for gatunek in gatuneks %}
+            {% if forloop.counter|divisibleby:3 %}
+              </div>
+              <div class="row">
+            {% endif %}
+          {% endif %} 
+        {% endfor %}
+      </div>
+    <br />
+    <br />
+    <br />
 
     {% for gatunek in gatuneks %}
+      <div id="utwory">
 
-      <div id="gatun">
         <h3 id="fortitle">{{gatunek.NazwaG}}</h3>
 
-        <div id="gatundiss">
+        <div class="row">
           {% for utwor in utwors %} 
             {% if gatunek == utwor.gatunek %}
-              <img src={ {utwor.imgurl}} style="width:128px;height:128px";></img>
-              <h2><a href="">{{ utwor.title }}</a></h2>
-              <p>Autor: {{ utwor.author }}</p>
-              <p>Created: {{ utwor.created_date }}</p>
-              {% if utwor.song %}
-                <button href "a" type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
+              <div class="col-md-4">
+                <div class="thumbnail">
+                  <div id="utwor">
+                    <div class="column">
+                      <img src={{utwor.imgurl}} style="width:128px;height:128px;">
+                    </div>
+                    <div class="column">
+                      <div class="caption">
+                        <h4>{{utwor.title}}</h4>
+                        <p name='autor'>Autor: {{ utwor.author }}</p>
+                        <p>Created: {{ utwor.created_date }}</p>
+                      </div>
+                    </div>
+                    <div style="clear:both;"></div>
+                  </div>
+                </div>
+              </div>
+
+              {% if forloop.counter|divisibleby:3 %}
+                </div>
+                <div class="row">
               {% endif %}
             {% endif %} 
           {% endfor %}
         </div>
       </div>
-    {% endfor %}
     {% endfor %}
 
 
@@ -82,6 +94,7 @@
         <audio src="" id="audioPlayer" controls="controls">Can't play</audio>
       </p>
     </div>
+
   </div>
 </div>
 

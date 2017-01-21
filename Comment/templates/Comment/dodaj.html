@@ -10,7 +10,6 @@
         
         <h2><p >{{ user.username }}</p></h2>
         
-        
         {% for list in lists %}
         <p >{{ list.NazwaL}}</p>
 
@@ -22,8 +21,14 @@
         <h2>Nowa lista</h2>
         <form method="get" action="/nowa_lista">
 <input type="text" class="form-control" name="create" size="14" maxlength="120"><br><button   type="submit" class="btn btn-default">Stwórz nową listę</button></form>
+
+
+
+
   </body>
 
+
+    
 
 
 {% endblock content %}
