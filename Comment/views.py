@@ -3,6 +3,8 @@ from django.utils import timezone
 from django.db.models import Q
 from .models import Comment
 from .models import Utwor
+from .models import UtwordoListy
+from .models import Lista
 from .models import Gatunek
 from django.http import HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
@@ -19,6 +21,10 @@ def post_list(request):
 def logowanie(request):
 	return render(request, 'Comment/logowanie.html', {})
 
+def Dodaj(request):
+    lists = Lista.objects.all()
+    return render(request, 'Comment/dodaj.html', {'lists':lists})
+
 def utwor(request):
     title = request.GET.get('title', 'k')
     print(title)
@@ -26,7 +32,10 @@ def utwor(request):
     return render(request, 'Comment/utwor.html', {'utwors':utwors,'tytul':title})
 
 def listy(request):
-    return render(request, 'Comment/listyOd.html', {})
+    utwors = Utwor.objects.all()
+    lists = Lista.objects.all()
+    polaczenie = UtwordoListy.objects.all()
+    return render(request, 'Comment/listyOd.html', {'utwors':utwors,'lists':lists,'polaczenie':polaczenie})
 
 def search_songs(request):
 	find_string = request.GET.get('q', '')

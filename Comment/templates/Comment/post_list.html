@@ -12,9 +12,7 @@
   {% if user.is_authenticated %}
 <div id="mySidenav" class="sidenav">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-  <a href="#">Profil</a>
   <a href="/listyOd">Listy odtwarzania</a>
-  <a href="#">Historia</a>
   <a href="/logout/">Wyloguj</a>
 
 </div>
@@ -34,6 +32,7 @@
       	<div id = "diss">
           <img src = {{utwor.imgurl}}  style="width:128px;height:128px";></img>
 
+          
           <form id="doutworu" method="get" action="/utwor">
           <h2><input type="submit"  name = 'title' value="{{ utwor.title }}" id = "utworbutton"></input></h2>
           
@@ -43,6 +42,8 @@
           <p>Created: {{ utwor.created_date }}</p>
           {% if utwor.song %}
           <button  type="button" class="playSong" onclick="playSong('{{ utwor.song.url }}')">Graj</button>
+          <form id="doutworu" method="get" action="/dodaj">
+          <button  type="submit" >Dodaj do listy</button></form>
           </div>
 
           {% endif %}

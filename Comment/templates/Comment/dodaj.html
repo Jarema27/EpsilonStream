@@ -8,17 +8,13 @@
 
   <body>
         
-        <h2><p >Listy użytkownika {{ user.username }}</p></h2>
+        <h2><p >{{ user.username }}</p></h2>
         
 
-        
-        {% for pol in polaczenie %}
         {% for list in lists %}
-        {% ifequal user.username pol.IdLista.Klient.username %}
-
-        <p >{{ pol.IdUtwor.title}}</p>
-        {% endifequal%}	
-        {% endfor %}
+        <p >{{ list.NazwaL}}</p>
+        <form id="doutworu" method="get" action="/dodaj">
+        <button  type="submit" >Dodaj do listy</button></form>
         {% endfor %}
 
 
