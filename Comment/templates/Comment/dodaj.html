@@ -1,0 +1,27 @@
+{% extends 'Comment/base.html' %}
+
+{% block title %}Ekran Logowania{% endblock title %}
+	
+{% block content %}
+  <title>Utwor</title>
+
+
+  <body>
+        
+        <h2><p >{{ user.username }}</p></h2>
+        
+
+        {% for list in lists %}
+        <p >{{ list.NazwaL}}</p>
+        <form id="doutworu" method="get" action="/dodaj">
+        <button  type="submit" >Dodaj do listy</button></form>
+        {% endfor %}
+
+
+  </body>
+
+
+    
+
+
+{% endblock content %}
