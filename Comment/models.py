@@ -93,3 +93,13 @@ class UtwordoListy(models.Model):
 
     def __str__(self):
         return str(self.IdUtwor)
+
+class Odsluchanie(models.Model):
+    IdUtwor = models.ForeignKey(Utwor, on_delete=models.CASCADE)
+    IdKlient = models.ForeignKey('auth.User')
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+
+    def __str__(self):
+        return str(self.IdUtwor)

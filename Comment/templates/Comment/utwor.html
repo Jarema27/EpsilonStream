@@ -23,6 +23,8 @@
               Genre: {{ utwor.gatunek }}<br />
               Created: {{ utwor.created_date }}
               Odtworzenia: {{ utwor.IloscWyswietlen }}</p>
+              <form id="doutworu" method="get" action="/dodaj">
+          <button  type="submit" name = 'title' value="{{ utwor }}">Dodaj do listy</button></form>
             </div>
           </div>
           <div style="clear:both;"></div>
