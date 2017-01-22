@@ -15,7 +15,7 @@ from django.shortcuts import render_to_response, get_object_or_404
 
 def post_list(request):
    utwors = Utwor.objects.all()
-   gatuneks=Gatunek.objects.all()
+   gatuneks = Gatunek.objects.all().exclude(utwor__isnull=True)
    return render(request, 'Comment/post_list.html', {'utwors':utwors,'gatuneks':gatuneks})
 
 def logowanie(request):
@@ -37,7 +37,7 @@ def utwor(request, pk):
     song = get_object_or_404(Utwor, pk=pk)
     song.IloscWyswietlen += 1
     song.save()
-    
+
     songs = Utwor.objects.filter(Q(gatunek=song.gatunek) | Q(author__contains=song.author)).exclude(pk=song.pk)
     return render(request, 'Comment/utwor.html', {'utwor':song, 'utwory':songs})
 

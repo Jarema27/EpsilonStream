@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 class Gatunek(models.Model):
     id_G = models.AutoField(primary_key=True)
     NazwaG = models.CharField(max_length=30)
+    
     def publish(self):
         self.published_date = timezone.now()
         self.save()

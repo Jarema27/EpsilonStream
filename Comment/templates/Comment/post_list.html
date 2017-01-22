@@ -54,35 +54,33 @@
 
     {% for gatunek in gatuneks %}
       <div id="utwory">
-
+        
         <h3 id="fortitle">{{gatunek.NazwaG}}</h3>
 
         <div class="row">
-          {% for utwor in utwors %} 
-            {% if gatunek == utwor.gatunek %}
-              <div class="col-md-4">
-                <div class="thumbnail">
-                  <div id="utwor">
-                    <div class="column">
-                      <img src={{utwor.imgurl}} style="width:128px;height:128px;">
-                    </div>
-                    <div class="column">
-                      <div class="caption">
-                        <h4>{{utwor.title}}</h4>
-                        <p name='autor'>Autor: {{ utwor.author }}</p>
-                        <p>Created: {{ utwor.created_date }}</p>
-                      </div>
-                    </div>
-                    <div style="clear:both;"></div>
+          {% for utwor in gatunek.utwor_set.all %} 
+            <div class="col-md-4">
+              <div class="thumbnail">
+                <div id="utwor">
+                  <div class="column">
+                    <img src={{utwor.imgurl}} style="width:128px;height:128px;">
                   </div>
+                  <div class="column">
+                    <div class="caption">
+                      <h4>{{utwor.title}}</h4>
+                      <p name='autor'>Autor: {{ utwor.author }}</p>
+                      <p>Created: {{ utwor.created_date }}</p>
+                    </div>
+                  </div>
+                  <div style="clear:both;"></div>
                 </div>
               </div>
+            </div>
 
-              {% if forloop.counter|divisibleby:3 %}
-                </div>
-                <div class="row">
-              {% endif %}
-            {% endif %} 
+            {% if forloop.counter|divisibleby:3 %}
+              </div>
+              <div class="row">
+            {% endif %}
           {% endfor %}
         </div>
       </div>
