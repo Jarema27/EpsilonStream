@@ -9,12 +9,15 @@
   <body>
         
         <h2><p >{{ user.username }}</p></h2>
-        
+         {% if check %}
+        <p >Utwór jest już zawarty w liście</p>
+        {% endif %}
         {% for list in lists %}
         <p >{{ list.NazwaL}}</p>
 
         <form method="get" action="/dodaj_do_listy">
 <button  name = "ddj" type="submit" type="submit" class="btn btn-default" value ="{{title}},{{list}}">Dodaj do listy</button></form>
+
         {% endfor %}
         <br><br><br><br><br><br><br><br><br><br><br>
 

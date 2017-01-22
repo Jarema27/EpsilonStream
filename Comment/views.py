@@ -40,7 +40,15 @@ def utwor(request, pk):
 
     songs = Utwor.objects.filter(Q(gatunek=song.gatunek) | Q(author__contains=song.author)).exclude(pk=song.pk)
     return render(request, 'Comment/utwor.html', {'utwor':song, 'utwory':songs})
-
+def playList(request):
+    lista = request.GET.get('lista', 'ptys')
+    lists = Lista.objects.filter(Q(NazwaL = lista))
+    pol = UtwordoListy.objects.filter(Q(IdLista = lists))
+    ferst = pol.first().IdUtwor
+    lists = list()
+    for p in pol:
+        lists.append(Utwor.objects.get(Q(id = p.IdUtwor.id)))
+    return render(request, 'Comment/utwor.html', {'utwory':lists,'utwor':ferst})
 
 def listy(request):
     utwors = Utwor.objects.all()
@@ -65,12 +73,30 @@ def dodaj_do_listy(request):
     a = title.split(',')
     utwor = Utwor.objects.get(title__contains = a[0])
     lista = Lista.objects.get(NazwaL__contains = a[1])
-    dl = UtwordoListy()
-    dl.IdUtwor = utwor
-    dl.IdLista = lista
-    dl.save()
+    if(not UtwordoListy.objects.filter(Q(IdUtwor=utwor)& Q(IdLista=lista))):
+        print('omega')
+        dl = UtwordoListy()
+        dl.IdUtwor = utwor
+        dl.IdLista = lista
+        dl.save()
+        check = False
+    else:
+        check = True;
     lists = Lista.objects.all()
-    return render(request, 'Comment/dodaj.html', {'lists':lists,'title':title})
+    return render(request, 'Comment/dodaj.html', {'lists':lists,'title':title,'check':check})
+
+def remove(request):
+    pol = request.GET.get('rem', 'k')
+    print(pol)
+    a = pol.split(',')
+    utwor = Utwor.objects.get(title__contains = a[0])
+    lista = Lista.objects.get(NazwaL__contains = a[1])
+    instance = UtwordoListy.objects.get(IdUtwor = utwor,IdLista = lista)
+    instance.delete()
+    utwors = Utwor.objects.all()
+    lists = Lista.objects.filter(Q(Klient = request.user))    
+    polaczenie = UtwordoListy.objects.all()
+    return render(request, 'Comment/listyOd.html', {'utwors':utwors,'lists':lists,'polaczenie':polaczenie})
 
 def registration(request):
     return render(request, 'Comment/registration.html')

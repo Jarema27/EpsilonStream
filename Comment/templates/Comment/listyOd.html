@@ -13,8 +13,10 @@
 
         {% for list in lists %}
 
-        <h1 > {{ list.NazwaL }}</h1>
-
+<form method="get" action="/playList/" >
+        <h1"> {{ list.NazwaL }}</h1>
+        <button  type="submit" name = 'lista' value="{{ list.NazwaL }}">Dodaj do listy</button></form><br>
+        </div>
         {% for pol in polaczenie %}
         
         {% ifequal user.username pol.IdLista.Klient.username %}
@@ -24,6 +26,8 @@
         <p name = 'autor'>Autor: {{ pol.IdUtwor.author }}</p>
         <p>Created: {{ pol.IdUtwor.created_date }}</p>
         <button  type="button" class="playSong" onclick="playSong('{{ pol.IdUtwor.song.url }}')">Graj</button>  <br>
+        <form method="get" action="/remove/">
+<button  name = "rem" type="submit" type="submit" class="btn btn-default" value ="{{pol.IdUtwor}},{{pol.IdLista}}">Usuń</button></form>
         {% endifequal%}	
         {% endifequal%} 
         {% endfor %}
