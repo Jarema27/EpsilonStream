@@ -35,7 +35,8 @@ def utwor(request):
 
 def utwor(request, pk):
     song = get_object_or_404(Utwor, pk=pk)
-    return render(request, 'Comment/utwor.html', {'utwor':song})
+    songs = Utwor.objects.filter(Q(gatunek=song.gatunek) | Q(author__contains=song.author)).exclude(pk=song.pk)
+    return render(request, 'Comment/utwor.html', {'utwor':song, 'utwory':songs})
 
 
 def listy(request):

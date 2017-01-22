@@ -53,8 +53,61 @@
     box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.75);
 }
 
+#main-song:hover {
+    -webkit-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+    box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.75);
+}
+
 .column .page-header {
     padding-bottom: 3px;
     margin-top: 6px;
     margin-bottom: 10px;
+}
+
+#main-song {
+    max-width: 820px;
+    height: 460px;
+
+    position: relative;
+}
+
+#single-song-page #pic {
+    width: 450px;
+    height: 450px; 
+}
+
+#single-song-page img {
+    width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+}
+
+#single-song-caption {
+    height: 100%;
+}
+
+#single-song-page .caption {
+    width: 280px;
+}
+
+#single-song-page audio {
+    position: absolute;
+
+    bottom: 0px;
+    width: 99%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#single-song-page .row {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#songs-in-genre {
+    width: 420px;
+    height: 140px;
 }
