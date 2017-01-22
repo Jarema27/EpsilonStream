@@ -34,7 +34,8 @@
       </div>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-4" id="side-panel">
+      <h4>Polecane:</h4>
       {% for utworg in utwory %}
         <div class="row">
           <div class="col" onclick="location.href='/utwor/{{utworg.id}}';">
