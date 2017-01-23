@@ -4,8 +4,10 @@
 	
 {% block content %}
 
-  <h2>Nowa lista</h2>
   <div class="row" style="max-width:1230px;margin-left:auto;margin-right:auto;">
+    <div class="page-header" style="margin-top:5px;">
+      <h2>Nowa lista</h2>
+    </div>
     <form method="get" action="/lista/">
       <div class="column" style="width:1070px;margin-right:20px;"><input type="text" class="form-control" name="create" size="14" maxlength="120"></div>
       <div class="column"><button type="submit" class="btn btn-default">Stwórz nową listę</button></div>
@@ -28,11 +30,11 @@
             <td>{{ list.NazwaL }}</td>
             <td>{{ list.songs.all|length }}</td>
             {% if list.songs.all|length > 0 %}
-              <td><a href="/playlist/{{ list.pk }}/song/0/"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
-              <td><a href="/edit/{{ list.pk }}/"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+              <td><a href="/playlist/{{ list.pk }}/song/0/"><span class="glyphicon glyphicon-play" aria-hidden="true" style="color: black;"></span></a></td>
+              <td><a href="/edit/{{ list.pk }}/"><span class="glyphicon glyphicon-edit" aria-hidden="true" style="color: black;"></span></a></td>
             {% else %}
-              <td><span class="glyphicon glyphicon-play" aria-hidden="true"></span></td>
-              <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
+              <td><span class="glyphicon glyphicon-play" aria-hidden="true" style="color: gray;"></span></td>
+              <td><span class="glyphicon glyphicon-edit" aria-hidden="true" style="color: gray;"></span></td>
             {% endif %}
             <td><form method="post" action="/remove/"><button name="rem" type="submit" class="btn btn-default lb" value="{{ list.pk }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></form></td>  
           </tr>  
