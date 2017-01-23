@@ -8,11 +8,14 @@
 <div class="thumbnail formt" id="logowanie">
     {% if registered %}
         <strong>Dzięki za rejestrację!</strong>
-        <a href="/logowanie">Return to the homepage.</a><br />
+        <a href="/logowanie/">Przejdź do logowania</a><br />
     {% else %}
         <div class="page-header" style="margin-top:5px;">
             <h1>Rejestracja</h1>
         </div>
+        {% if exist %}
+            <strong style="color: red; margin-left: 44px;">Użytkownik już istnieje!</strong>
+        {% endif %}
         <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-group">

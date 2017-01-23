@@ -30,6 +30,9 @@
 
         <ul class="nav navbar-nav navbar-right">
           {% if user.is_authenticated %}
+            {% if user.is_staff %}
+              <li><a href="/admin">Panel admina</a></li>
+            {% endif %}
             <li><a href="/listyod">Listy odtwarzania</a></li>
             <li><a href="/logout/">Wyloguj</a></li>
           {% else %}

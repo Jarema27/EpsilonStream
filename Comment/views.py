@@ -119,6 +119,7 @@ def register(request):
     # A boolean value for telling the template whether the registration was successful.
     # Set to False initially. Code changes value to True when registration succeeds.
     registered = False
+    exist = False
 
     # If it's a HTTP POST, we're interested in processing form data.
     if request.method == 'POST':
@@ -158,7 +159,7 @@ def register(request):
         # Print problems to the terminal.
         # They'll also be shown to the user.
         else:
-            print (user_form.errors, profile_form.errors)
+            exist = True
 
     # Not a HTTP POST, so we render our form using two ModelForm instances.
     # These forms will be blank, ready for user input.
@@ -169,7 +170,7 @@ def register(request):
     # Render the template depending on the context.
     return render_to_response(
             'Comment/register.html',
-            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered}
+            {'user_form': user_form, 'profile_form': profile_form, 'registered': registered, 'exist': exist}
             )
 def user_login(request):
     # Like before, obtain the context for the user's request.
@@ -181,7 +182,7 @@ def user_login(request):
         # This information is obtained from the login form.
         username = request.POST.get("username", False)
         password = request.POST.get("password", False)
-        print(username);
+        print(username)
         # Use Django's machinery to attempt to see if the username/password
         # combination is valid - a User object is returned if it is.
         user = authenticate(username=username, password=password)

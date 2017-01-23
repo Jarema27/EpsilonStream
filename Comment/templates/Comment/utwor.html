@@ -20,8 +20,8 @@
                 <h4>{{utwor.title}}</h4>
               </div>
               <p name='autor'>Autor: {{ utwor.author }}<br />
-              Genre: {{ utwor.gatunek }}<br />
-              Created: {{ utwor.created_date }}
+              Gatunek: {{ utwor.gatunek }}<br />
+              Dodano: {{ utwor.created_date }}
               Odtworzenia: {{ utwor.IloscWyswietlen }}</p>
               <a href="/dodaj/{{ utwor.pk }}/">Dodaj do listy</a>
             </div>
@@ -52,7 +52,7 @@
                       <h4>{{utworg.title}}</h4>
                     </div>
                     <p name='autor'>Autor: {{ utworg.author }}<br />
-                    Created: {{ utworg.created_date }}</p>
+                    Dodano: {{ utworg.created_date }}</p>
                   </div>
                 </div>
                 <div style="clear:both;"></div>
