@@ -23,7 +23,9 @@
               Gatunek: {{ utwor.gatunek }}<br />
               Dodano: {{ utwor.created_date }}
               Odtworzenia: {{ utwor.IloscWyswietlen }}</p>
+              {% if user.is_authenticated %}
               <a href="/dodaj/{{ utwor.pk }}/">Dodaj do listy</a>
+              {% endif %}
             </div>
           </div>
           <div style="clear:both;"></div>

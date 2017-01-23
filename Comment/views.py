@@ -23,7 +23,7 @@ def logowanie(request):
 
 
 def dodaj(request, pk):
-    lists = Lista.objects.all()
+    lists = Lista.objects.filter(Q(Klient=request.user))
     
     return render(request, 'Comment/dodaj.html', {'lists':lists, 'sid':pk})
 
