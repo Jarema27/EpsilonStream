@@ -1,6 +1,6 @@
 {% extends 'Comment/base.html' %}
 
-{% block title %}Utwor{% endblock title %}
+{% block title %}Playlista{% endblock title %}
 	
 {% block content %}
 
@@ -11,7 +11,7 @@
         <div id="utwor">
           <div class="column" id="pic">
             <div id="img-cover">
-              <img src={{utwor.imgurl}}>
+              <img src="{{ utwor.imgurl }}">
             </div>
           </div>
           <div class="column" id="single-song-caption">
@@ -19,7 +19,8 @@
               <div class="page-header">
                 <h4>{{utwor.title}}</h4>
               </div>
-              <p name='autor'>Autor: {{ utwor.author }}<br />
+              <p name='autor'>
+              Autor: {{ utwor.author }}<br />
               Genre: {{ utwor.gatunek }}<br />
               Created: {{ utwor.created_date }}
               Odtworzenia: {{ utwor.IloscWyswietlen }}</p>
@@ -41,7 +42,7 @@
       <h4>W kolejce:</h4>
       {% for utworg in utwory %}
         <div class="row">
-          <div class="col" onclick="location.href='/utwor/{{utworg.id}}';">
+          <div class="col" onclick="location.href='/playlist/{{ lista.pk }}/song/{{ sid }}';">
             <div class="thumbnail" id="songs-in-genre">
               <div id="utwor">
                 <div class="column">

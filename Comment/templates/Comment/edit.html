@@ -1,0 +1,27 @@
+{% extends 'Comment/base.html' %}
+
+{% block title %}Ekran Logowania{% endblock title %}
+	
+{% block content %}
+
+<div class="thumbnail" id="playlists">
+    {{ lista.title }}
+    <table class="table">
+    <tr>
+        <td>Nazwa</td>
+        <td>Wykonawca</td>
+        <td>Odtwarzaj</td>
+        <td>Usuń</td>          
+    </tr> 
+    {% for utwor in utwory %}
+        <tr class="hvrbl">
+        <td>{{ utwor.title }}</td>
+        <td>{{ utwor.author }}</td>
+        <td><a href="/utwor/{{ utwor.pk }}/">Odtwarzaj</a></td>
+        <td><form method="post" action="/remove/list/{{ lista.pk }}/song/"><button  name="rem" type="submit" type="submit" class="btn btn-default" value ="{{ utwor.pk }}">Usuń</button></form></td>  
+        </tr>  
+    {% endfor %}
+    </table>
+</div>
+
+{% endblock content %}

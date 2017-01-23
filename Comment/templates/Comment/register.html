@@ -5,40 +5,41 @@
 {% block content %}
 
 <!DOCTYPE html>
-<html>
-
-    <head>
-        <title>Register</title>
-    </head>
-
-    <body>
-        <h1>Register</h1>
-
-        {% if registered %}
+<div class="thumbnail formt" id="logowanie">
+    {% if registered %}
         <strong>Dzięki za rejestrację!</strong>
         <a href="/logowanie">Return to the homepage.</a><br />
-        {% else %}
-        <strong>Zarejestruj się tutaj!</strong><br />
-
-        <form id="user_form" method="post" action="/register/"
-                enctype="multipart/form-data">
-            <dir>
+    {% else %}
+        <div class="page-header" style="margin-top:5px;">
+            <h1>Rejestracja</h1>
+        </div>
+        <form id="user_form" method="post" action="/register/" enctype="multipart/form-data">
             {% csrf_token %}
-            <dir><h4>Podaj nazwę użytkownika:</h4>{{user_form.username}}</dir>
-            <dir id="txtNewPassword"><h4>Podaj hasło :</h4>{{user_form.password}}</dir>
-            <dir id="txtNewPasswordPrim"><h4>Podaj hasło ponownie:</h4>{{user_form.password}}</dir>
-            <dir ><h4>Podaj email:</h4>{{user_form.email}}</dir>
-            {% if txtNewPassword == txtNewPasswordPrim %}
-            
-            <input type="submit" name="submit" value="Register" />
-            {%else%}
-            <h4>Hasła się nie zgadzają<h4>
-            {%endif%}
+            <div class="form-group">
+                <div  style="margin-left: auto;margin-right: auto; max-width: 400px;">
+                    <label for="login-input" style="margin-right: 38px;">Login:</label>
+                    {{user_form.username}}
+                </div>
+            </div>
+            <div class="form-group" style="margin-left: auto;margin-right: auto;">
+                <div  style="margin-left: auto;margin-right: auto; max-width: 400px;">
+                    <label for="password-input" style="margin-right: 38px;">Hasło:</label>
+                    {{user_form.password}}
+                </div>
+            </div>
+            <div class="form-group" style="margin-left: auto;margin-right: auto;">
+                <div  style="margin-left: auto;margin-right: auto; max-width: 400px;">
+                    <label for="password-input">Podaj email:</label>
+                    {{user_form.email}}
+                </div>
+            </div>
 
+            <div  style="margin-left: auto;margin-right: auto; max-width: 372px;">
+                <button type="submit" class="btn btn-default" style="float:right;">Zarejestruj się</button>
+                <div style="clear:both"></div>
+            </div>
         </form>
-        {% endif %}
-    </body>
-
-</html>
-
+    {% endif %}
+</div>
+            
 {% endblock content %}

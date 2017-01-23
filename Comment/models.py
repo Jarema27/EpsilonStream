@@ -56,13 +56,14 @@ class UserProfile(models.Model):
     # The additional attributes we wish to include.
     website = models.URLField(blank=True)
     
-
     # Override the __unicode__() method to return out something meaningful!
     def __unicode__(self):
         return self.user.username
+
 class Album(models.Model):
     id_G = models.AutoField(primary_key=True)
     NazwaAlb = models.CharField(max_length=50)
+
     def publish(self):
         self.published_date = timezone.now()
         self.save()
@@ -77,6 +78,8 @@ class Lista(models.Model):
     created_date = models.DateTimeField(
             default=timezone.now)
     Klient = models.ForeignKey('auth.User')
+    songs = models.ManyToManyField(Utwor, through='UtwordoListy')
+    
     def publish(self):
         self.published_date = timezone.now()
         self.save()

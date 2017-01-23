@@ -4,20 +4,11 @@
 
 {% block content %}
 <div id="post-list">
-  {% if user.is_authenticated %}
-    <!-- Use any element to open the sidenav -->
-
-  {% endif %}
-
-
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-
-
-
-
 <div id="main">
   <div id="utwory">
-      <h3 id="fortitle">Rekomendowane</h3>
+      <div class="page-header" style="margin-top:5px;">
+          <div class="title-container"><h3>Rekomendowane</h3></div>
+      </div>
       <div class="row">
         {% for utwor in utwors %} 
           {% if forloop.counter < 6 %}
@@ -25,7 +16,7 @@
               <div class="thumbnail">
                 <div id="utwor">
                   <div class="column">
-                    <img src={{utwor.imgurl}} style="width:128px;height:128px;">
+                    <img src="{{utwor.imgurl}}" style="width:128px;height:128px;">
                   </div>
                   <div class="column">
                     <div class="caption">
@@ -55,7 +46,9 @@
     {% for gatunek in gatuneks %}
       <div id="utwory">
         
-        <h3 id="fortitle">{{gatunek.NazwaG}}</h3>
+        <div class="page-header" style="margin-top:5px;">
+          <div class="title-container"><h3>{{gatunek.NazwaG}}</h3></div>
+        </div> 
 
         <div class="row">
           {% for utwor in gatunek.utwor_set.all %} 
@@ -86,14 +79,6 @@
         </div>
       </div>
     {% endfor %}
-
-
-    <div id="audioContainer">
-      <p>
-        <audio src="" id="audioPlayer" controls="controls">Can't play</audio>
-      </p>
-    </div>
-
   </div>
 </div>
 

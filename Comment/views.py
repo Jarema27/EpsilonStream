@@ -11,7 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 from Comment.forms import UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, redirect
 
 def post_list(request):
    utwors = Utwor.objects.all()
@@ -22,11 +22,10 @@ def logowanie(request):
 	return render(request, 'Comment/logowanie.html', {})
 
 
-def Dodaj(request):
+def dodaj(request, pk):
     lists = Lista.objects.all()
-    title = request.GET.get('title', 'k')
     
-    return render(request, 'Comment/dodaj.html', {'title':title,'lists':lists})
+    return render(request, 'Comment/dodaj.html', {'lists':lists, 'sid':pk})
 
 def utwor(request):
     title = request.GET.get('title', 'k')
@@ -40,15 +39,18 @@ def utwor(request, pk):
 
     songs = Utwor.objects.filter(Q(gatunek=song.gatunek) | Q(author__contains=song.author)).exclude(pk=song.pk)
     return render(request, 'Comment/utwor.html', {'utwor':song, 'utwory':songs})
-def playList(request):
-    lista = request.GET.get('lista', 'ptys')
-    lists = Lista.objects.filter(Q(NazwaL = lista))
-    pol = UtwordoListy.objects.filter(Q(IdLista = lists))
-    ferst = pol.first().IdUtwor
-    lists = list()
-    for p in pol:
-        lists.append(Utwor.objects.get(Q(id = p.IdUtwor.id)))
-    return render(request, 'Comment/utwor.html', {'utwory':lists,'utwor':ferst})
+
+def playList(request, pk, sid):
+    lista = get_object_or_404(Lista, pk=pk)
+    utwory = lista.songs.all()
+    utwor = utwory[int(sid)]
+    utworypozostale = utwory[int(sid)+1:]
+    return render(request, 'Comment/playList.html', {'utwor':utwor, 'utwory':utworypozostale, 'lista':lista, 'sid':(int(sid)+1)})
+
+def edit(request, pk):
+    lista = get_object_or_404(Lista, pk=pk)
+    utwory = lista.songs.all()
+    return render(request, 'Comment/edit.html', {'utwory':utwory, 'lista':lista})
 
 def listy(request):
     utwors = Utwor.objects.all()
@@ -61,42 +63,47 @@ def search_songs(request):
 	utwors = Utwor.objects.filter(Q(author__contains=find_string) | Q(title__contains=find_string))
 	return render(request, 'Comment/post_list.html', {'utwors':utwors})
 
-def nowa_lista(request):
+def nowa_lista_ba(request):
     find_string = request.GET.get('create', 'k')
     lis = Lista(NazwaL = find_string,Klient = request.user)
     lis.save()
     lists = Lista.objects.all()
-    return render(request, 'Comment/dodaj.html', {'lists':lists})
+    return redirect(listy)
 
-def dodaj_do_listy(request):
-    title = request.GET.get('ddj', 'k')
-    a = title.split(',')
-    utwor = Utwor.objects.get(title__contains = a[0])
-    lista = Lista.objects.get(NazwaL__contains = a[1])
-    if(not UtwordoListy.objects.filter(Q(IdUtwor=utwor)& Q(IdLista=lista))):
-        print('omega')
+def nowa_lista(request, sid):
+    find_string = request.GET.get('create', 'k')
+    lis = Lista(NazwaL = find_string, Klient = request.user)
+    lis.save()
+    lists = Lista.objects.all()
+    return redirect(dodaj_do_listy, lis.pk, sid)
+
+def dodaj_do_listy(request, lid, sid):
+    utwo = get_object_or_404(Utwor, pk=sid)
+    lista = get_object_or_404(Lista, pk=lid)
+    if(not UtwordoListy.objects.filter(Q(IdUtwor=utwo.pk)& Q(IdLista=lista.pk))):
         dl = UtwordoListy()
-        dl.IdUtwor = utwor
+        dl.IdUtwor = utwo
         dl.IdLista = lista
         dl.save()
         check = False
     else:
-        check = True;
+        check = True
+        lists = Lista.objects.filter(Q(Klient = request.user))
+        return render(request, 'Comment/dodaj.html',  {'lists':lists, 'sid':sid, 'check':check})
     lists = Lista.objects.all()
-    return render(request, 'Comment/dodaj.html', {'lists':lists,'title':title,'check':check})
+    return redirect(utwor, sid)
 
 def remove(request):
-    pol = request.GET.get('rem', 'k')
-    print(pol)
-    a = pol.split(',')
-    utwor = Utwor.objects.get(title__contains = a[0])
-    lista = Lista.objects.get(NazwaL__contains = a[1])
-    instance = UtwordoListy.objects.get(IdUtwor = utwor,IdLista = lista)
-    instance.delete()
-    utwors = Utwor.objects.all()
-    lists = Lista.objects.filter(Q(Klient = request.user))    
-    polaczenie = UtwordoListy.objects.all()
-    return render(request, 'Comment/listyOd.html', {'utwors':utwors,'lists':lists,'polaczenie':polaczenie})
+    id = request.POST.get('rem', '')
+    lista = get_object_or_404(Lista, pk=id)
+    lista.delete()
+    return redirect(listy)
+
+def remove_song(request, pk):
+    sid = request.POST.get('rem', '')
+    pol = UtwordoListy.objects.get(Q(IdUtwor=sid) & Q(IdLista=pk))
+    pol.delete()
+    return redirect(edit, pk)
 
 def registration(request):
     return render(request, 'Comment/registration.html')
