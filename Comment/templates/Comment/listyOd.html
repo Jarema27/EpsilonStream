@@ -7,7 +7,7 @@
   <h2>Nowa lista</h2>
   <div class="row" style="max-width:1230px;margin-left:auto;margin-right:auto;">
     <form method="get" action="/lista/">
-      <div class="column" style="width:1075px;margin-right:20px;"><input type="text" class="form-control" name="create" size="14" maxlength="120"></div>
+      <div class="column" style="width:1070px;margin-right:20px;"><input type="text" class="form-control" name="create" size="14" maxlength="120"></div>
       <div class="column"><button type="submit" class="btn btn-default">Stwórz nową listę</button></div>
       <div style="clear:both;"></div>
     </form>
@@ -27,9 +27,14 @@
           <tr class="hvrbl">
             <td>{{ list.NazwaL }}</td>
             <td>{{ list.songs.all|length }}</td>
-            <td><a href="/playlist/{{ list.pk }}/song/0/">Odtwarzaj</a></td>
-            <td><a href="/edit/{{ list.pk }}/">Edytuj</a></td>
-            <td><form method="post" action="/remove/"><button name="rem" type="submit" class="btn btn-default" value="{{ list.pk }}">Usuń</button></form></td>  
+            {% if list.songs.all|length > 0 %}
+              <td><a href="/playlist/{{ list.pk }}/song/0/"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
+              <td><a href="/edit/{{ list.pk }}/"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a></td>
+            {% else %}
+              <td><span class="glyphicon glyphicon-play" aria-hidden="true"></span></td>
+              <td><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></td>
+            {% endif %}
+            <td><form method="post" action="/remove/"><button name="rem" type="submit" class="btn btn-default lb" value="{{ list.pk }}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></form></td>  
           </tr>  
         {% endfor %}
       </table>
