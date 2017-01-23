@@ -6,10 +6,10 @@
 <div id="post-list">
 <div id="main">
   <div id="utwory">
-      <div class="page-header" style="margin-top:5px;">
-          <div class="title-container"><h3>Rekomendowane</h3></div>
-      </div>
       <div class="row">
+        <div class="page-header" style="margin-top:5px;">
+            <div class="title-container"><h3>Rekomendowane</h3></div>
+        </div>
         {% for utwor in utwors %} 
           {% if forloop.counter < 6 %}
             <div class="col-md-4" onclick="location.href='/utwor/{{utwor.id}}';">
@@ -45,12 +45,10 @@
 
     {% for gatunek in gatuneks %}
       <div id="utwory">
-        
-        <div class="page-header" style="margin-top:5px;">
-          <div class="title-container"><h3>{{gatunek.NazwaG}}</h3></div>
-        </div> 
-
         <div class="row">
+          <div class="page-header" style="margin-top:5px;">
+            <div class="title-container"><h3>{{gatunek.NazwaG}}</h3></div>
+          </div> 
           {% for utwor in gatunek.utwor_set.all %} 
             <div class="col-md-4"  onclick="location.href='/utwor/{{utwor.id}}';">
 
